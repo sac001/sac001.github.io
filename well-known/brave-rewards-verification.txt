@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: sac001.github.io
-Token: c5c8883bb367194f5c97edb8d2b5196471114ec8e48c90275454822fad7e9aa0
