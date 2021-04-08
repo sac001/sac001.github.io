@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YAMN Help</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat:700|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/gridism.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="wrap wider">
+
+  <header>
+    <div class="grid">
+      <div class="unit whole center-on-mobiles">
+        <h1><a href="index.html">YAMN HELP</a></h1>
+        <p class="lead"><em>A collection of tutorials on getting started with the YAMN anonymous remailer</em></p>
+      </div>
+    </div>
+  </header>
+
+  <section class="usage">
+    <div class="grid">
+      <div class="unit whole">
+        <h2>Introduction</h2>
+        <p class="lead"><a href="https://github.com/crooks/yamn">YAMN</a> is an anonymous remailer program
+        written in Golang by Zax. It stands for Yet Another Mix Network.</p>
+        <p class="lead">YAMN tries to look like its famous older brother
+        <a href="https://github.com/merkinmuffley/mixmaster4096">Mixmaster</a>.
+        But there are some significant differences and improvements. For example,
+        there are revised crypto functions. Instead of Mixmaster's Triple-DES,
+        RSAES-PKCS1-v1_5 and MD5, YAMN uses <a href="https://thebestvpn.com/advanced-encryption-standard-aes/" target="-blank">AES</a>, <a href="https://nacl.cr.yp.to/securing-communication.pdf" target="_blank">NaCl Box</a> and <a href="https://blake2.net/" target="_blank">Blake2</a>. Also
+        deterministic header padding has been added so as to protect against
+        <a href="https://ritter.vg/blog-cryptodotis-tagging_attack_on_mixmaster.html">tagging attacks</a>.</p>
+        <p class="lead">These tutorials provide you with help getting started with YAMN. Let's
+        begin.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="unit whole">
+        <h2>Tutorials</h2>
+        <h3><a href="install_yamn_client_windows10.html">Install YAMN as a remailer client (Windows 10)</a></h3>
+        <h3><a href="install_golang_debian.html">Install the Go language on Debian/Ubuntu (required to build YAMN)</a></h3>
+        <h3><a href="install_yamn_client_debian.html">Install YAMN as a remailer client (Debian/Ubuntu)</a></h3>
+        <h3><a href="install_yamn_remailer.html">Install YAMN as a remailer server on a VPS</a></h3>
+        <h3><a href="install_yamn_pinger.html">Install a YAMN Pinger on a VPS</a></h3>
+        <br><br>
+       
+        <h2>Addendum</h2>
+        <h3><a href="addendum/tor-and-yamn-windows10.html">Use YAMN with Tor (Windows 10)</a></h3>
+        <h3><a href="addendum/tor-and-yamn-linux.html">Use YAMN with Tor (Debian/Ubuntu)</a></h3>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="grid">
+      <div class="unit half">
+        <div class="center-on-mobiles">
+          <p>SEC3.NET <img src="images/copyleft.png" alt="copyleft" title="copyleft" style="float:left; margin-right:5px; width:20px; height:20px; border:none;" width="20"> | 2020</p>
+        </div>
+      </div>
+      <div class="unit half">
+        <div class="align-right center-on-mobiles">
+          <p>Powered by the Gridism template created by <a href="https://github.com/cobyism/">Coby Chapple</a>.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

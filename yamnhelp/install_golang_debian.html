@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YAMN Help</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat:700|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/gridism.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="wrap wider">
+
+  <header>
+    <div class="grid">
+      <div class="unit whole center-on-mobiles">
+        <h1><a href="index.html">YAMN HELP</a></h1>
+      </div>
+    </div>
+  </header>
+
+  <section class="usage">
+    <div class="grid">
+      <div class="unit whole">
+<h2>Install the Go language on Debian/Ubuntu</h2>
+
+<ul type="square">
+<li><p class="lead">We will install the Go language via <a href="https://github.com/canha/golang-tools-install-script/archive/master.zip">this shell script</a> by <a href="https://github.com/canha/">Jorge Canha</a>.<br><br>
+
+This script is brilliant. It provides you with a single user installation of Go. It does everything for you including the download of the latest Go version.</p></li>
+
+<li><p class="lead">As regular user 'yamn' (create user yamn if she does not exist) download the Golang Tools Install Script:</p>
+
+<pre><b>yamn@debian:~$</b> wget --no-check-certificate https://github.com/canha/golang-tools-install-script/archive/master.zip</pre></li>
+
+<li><p class="lead">Unzip master.zip
+
+<pre><b>yamn@debian:~$</b> unzip master.zip</pre>
+
+<p class="lead">and then move into the extracted folder</p>
+
+<pre><b>yamn@debian:~$</b> cd golang-tools-install-script-master</pre>
+
+<p class="lead"> and do:</p>
+
+<pre><b>yamn@debian::~/golang-tools-install-script-master$</b> bash goinstall.sh</pre></li>
+
+<li><p class="lead">That should set you up with an installation of Go and automatically insert the necessary PATH information into your .bashrc file. </p></li>
+
+<li><p class="lead">Logout of user yamn. Then log in again.<br><br>
+
+The Go language is now installed.</p></li>
+
+<li><p class="lead">To check that your Go installation is working run the following command:</p>
+
+<pre><b>yamn@debian:~$</b> go version<br>
+go version go1.15.2 linux/amd64</pre></li>
+
+<li><p class="lead">Done!</p></li>
+</ul><br>
+<hr>
+
+<h3><img src="images/back.png" width="26" border="0" alt="back Home" title="back HOME"> <a href="index.html">Back Home</a></h3>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="grid">
+      <div class="unit half">
+        <div class="center-on-mobiles">
+          <p>SEC3.NET <img src="images/copyleft.png" alt="copyleft" title="copyleft" style="float:left; margin-right:5px; width:20px; height:20px; border:none;" width="20"> | 2020</p>
+        </div>
+      </div>
+      <div class="unit half">
+        <div class="align-right center-on-mobiles">
+          <p>Powered by the Gridism template created by <a href="https://github.com/cobyism/">Coby Chapple</a>.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
