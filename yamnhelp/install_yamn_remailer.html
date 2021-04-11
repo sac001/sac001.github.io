@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YAMN Help</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Montserrat:700|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/gridism.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="wrap wider">
+
+  <header>
+    <div class="grid">
+      <div class="unit whole center-on-mobiles">
+        <h1><a href="index.html">YAMN HELP</a></h1>
+      </div>
+    </div>
+  </header>
+
+  <section class="usage">
+    <div class="grid">
+      <div class="unit whole">
+
+<h2>Install YAMN as a Remailer Server on a VPS</h2>
+
+<p class="lead">YAMN can be run as a remailer client or a publically available remailer server. In this tutorial we are interested in setting it up as a remailer server.</p>
+
+<p class="lead">This tutorial assumes <a href="https://golb.hplar.ch/2018/06/vps-setup-first-steps.html" target="_blank">a working VPS</a> with Debian or Ubuntu and a working MTA (follow <a href="https://www.linuxbabe.com/mail-server/setup-basic-postfix-mail-sever-ubuntu" target="_blank">Part 1 of this excellent tutorial.</a>)</p>
+
+<p class="lead">Before installing a remailer it's very important that you can already send email to an outside source from your VPS with an address like user@yourdomain.com, and that you can receive email at your VPS at that same address. This will mean <a href="https://www.namesilo.com/" target="_blank">purchasing a domain name</a> and, at a minimum, setting up an MX record for that domain.</p>
+
+<p class="lead">Our first step here is to download the source code for YAMN, and then build a yamn binary using Go to compile it. If you would like to skip the compiling process and just grab a pre-compiled YAMN binary Stefan Claas offers <a href="https://www.sec3.net/misc/YAMN-binary-compiled-by-StefanClaas-Oct-21-2020.zip">these Yamn binaries</a> for various architectures.</p>
+
+<ul type="square">
+<li><p class="lead">If you haven't already done so install the Go language by following the tutorial <a href="install_golang_debian.html">HERE</a>.</p></li>
+
+<li><p class="lead">As root or as a sudo user install Git which will allow you to download the YAMN source code from Zax's Github repository:<br>
+
+<pre><b>root@vps:~$</b> apt install git</pre>
+
+<li><p class="lead">While we are root let's install the man (manual) page for the YAMN remailer:</p>
+
+<pre><b>root@vps:~$</b> wget https://raw.githubusercontent.com/crooks/yamn/master/doc/yamn.1 && mv yamn.1 /usr/share/man/man1</pre>
+
+<p class="lead">We will also need procmail:</p>
+
+<pre><b>root@vps:~$</b> apt install procmail</pre></li>
+
+<li><p class="lead">Logout of root. Login as regular user 'yamn' or whichever user in whose home directory you installed Go.</p></li>
+
+<li><p class="lead">Download the YAMN source code:<br>
+
+<pre><b>yamn@vps:~$</b> go get github.com/crooks/yamn</b></pre></li>
+
+<li><p class="lead">To build the YAMN binary do:</p>
+
+<pre><b>yamn@vps:~$</b> cd ~/go/src/github.com/crooks/yamn</pre>
+
+<p class="lead">And then do:</p>
+
+<pre><b>yamn@vps:~/go/src/github.com/crooks/yamn$</b> go build</pre></li>
+
+<li><p class="lead">If all went well you should see a newly created binary file called yamn inside the source code folder ~/go/src/github.com/crooks/yamn/</p></li>
+
+<li><p class="lead">Create a folder for your new YAMN remailer to reside:</p>
+
+<pre><b>yamn@vps:~$</b> mkdir ~/yamn</pre>
+
+<p class="lead">And create a Maildir folder inside it:</p>
+
+<pre><b>yamn@vps:~$</b> mkdir -p ~/yamn/Maildir/{cur,new,tmp}</pre></li>
+
+<li><p class="lead">Copy the new yamn binary into your new yamn folder:</p>
+
+<pre><b>yamn@vps:~$</b> cp ~/go/src/github.com/crooks/yamn/yamn ~/yamn</pre></li>
+
+<li><p class="lead">You will need a .procmailrc file in the root of yamn user's home directory along side your .profile and .bashrc files. Download this one which should work for you:
+
+<pre><b>yamn@vps:~$</b> wget https://sac001.github.io/yamnhelp/debian/remailer/dot-procmailrc</pre>
+
+<pre><b>yamn@vps:~$</b> mv dot-procmailrc ~/.procmailrc</pre></p></li>
+
+<p class="lead">Also, create the necessary folder and log file for Procmail:</p>
+
+<pre><b>yamn@vps:~$</b> mkdir ~/procmail && touch ~/procmail/procmail.log</pre></li>
+
+<li><p class="lead">Create your remailer's yamn.cfg file in your yamn folder. Here is a sample yamn.cfg file for you to start with. Download it and place it in your yamn directory.
+
+<pre><b>yamn@vps:~/yamn$</b> wget https://sac001.github.io/yamnhelp/debian/remailer/yamn.cfg</pre>
+
+<p class="lead">Certain lines in this yamn.cfg need to be changed to match your remailer's information. Specifically OutboundAddy, Name (your remailer's shortname, like iria or frell) and Address, your remailer's email address. It's customary to name it yamn@yourdomain.com.</p></li>
+
+<li><p class="lead">As root or sudo user let's create a Systemd service so that YAMN will start up automatically after a crash or a reboot of your VPS. Follow these instructions - <a href="debian/remailer/create-yamn-service.txt" target="_blank">create-yamn-service.txt</a> - and then return to this tutorial.</p></li>
+
+<li><p class="lead">Login as user 'yamn' and take a look at your yamn folder. If you created a Systemd service as per the above instructions your Yamn remailer should now be fully operating.<br><br>
+
+A remailer key will have been generated (key.txt and secring.mix), stats and keys should have been downloaded and some system folders like idlog, chunkdb and pool will have been generated.</p></li>
+
+<li><p class="lead">To test that your new remailer is processing incoming mail you can send a remailer-key request (Subject: remailer-key) to your new remailer from an outside email account, just like you would for a Mixmaster remailer. You should get a reply in a minute or two.</p></li>
+
+<li><p class="lead">Your new YAMN remailer will not receive any traffic until it is publically announced. The most common way of announcing your new remailer is to post a message to the <a href="https://www.vpnmentor.com/blog/what-is-usenet-complete-guide/">Usenet</a> discussion group <a href="https://groups.google.com/forum/#!forum/alt.privacy.anon-server">alt.privacy.anon-server</a>. You can also announce your remailer in the Email listserv <a href="http://lists.mixmin.net/mailman/listinfo/remops">Remops List</a>. Soon after your announcement the YAMN pinger services (a pinger is like a directory of all public remailers) will add your remailer address to their lists. Soon after that your YAMN remailer will begin receiving real traffic from the public.<br><br>
+
+<b>YAMN Pinger Services:</b><br>
+Mixmin Yamn Pinger <a href="https://www.mixmin.net/yamn/">https://www.mixmin.net/yamn/</a><br>
+Austria Yamn Pinger <a href="https://www.tahina.priv.at/pinger/yamn/">https://www.tahina.priv.at/pinger/yamn/</a></p></li>
+
+<li><p class="lead">To see full YAMN usage type "man yamn" or visit <a href="https://www.mixmin.net/yamn.html" target="_blank">https://www.mixmin.net/yamn.html</a></p></li>
+
+<li><p class="lead">Done!</p></li>
+</ul><br>
+<hr>
+
+<h3><img src="images/back.png" width="26" border="0" alt="back Home" title="back HOME"> <a href="index.html">Back Home</a></h3>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="grid">
+      <div class="unit half">
+        <div class="center-on-mobiles">
+          <p>SEC3.NET <img src="images/copyleft.png" alt="copyleft" title="copyleft" style="float:left; margin-right:5px; width:20px; height:20px; border:none;" width="20"> | 2021</p>
+        </div>
+      </div>
+      <div class="unit half">
+        <div class="align-right center-on-mobiles">
+          <p>Powered by the Gridism template created by <a href="https://github.com/cobyism/">Coby Chapple</a>.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+[Mail]
+SMTPRelay = 127.0.0.1
+SMTPPort = 5870
+MXRelay = false
+SendMail = false
+Outfile = false
+
+[Urls]
+Fetch = false
+
+[General]
+Loglevel = trace
+LogToFile = true
