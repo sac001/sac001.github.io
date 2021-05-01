@@ -1,0 +1,43 @@
+Q. How do you start YAMN remailer daemon automatically at boot time?
+
+Become root, or sudo user.
+
+Add a file called /etc/systemd/system/yamn.service that contains the following:
+
+===========
+# /etc/systemd/system/yamn.service
+
+[Unit]
+Description=YAMN Anonymous Remailer
+After=mail-transport-agent.target
+
+[Service]
+Type=simple
+User=yamn
+Group=yamn
+ExecStart=/home/yamn/yamn/yamn -M -D
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+
+============
+
+Save the file.
+
+chmod 664 /etc/systemd/system/yamn.service
+
+Then run:
+
+systemctl enable yamn
+
+Reboot your VPS. This is not essential but is a good way
+to confirm that the service works as intended.
+
+If you prefer not to reboot at this time then:
+
+systemctl start yamn
+
+
+Cheers,
+SEC3
