@@ -18,5 +18,5 @@ I included here alice@sac001.github.io and bob@sac001.github.io.
 
 These two pub keys are meant as universal OpenPGP pub keys, so
 that WKD users do not have to reveal their real email address
-and can use such universal pub keys als for other channels
+and can use such universal pub keys also for other channels
 and tasks, besides email.
