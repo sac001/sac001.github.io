@@ -1,7 +1,7 @@
 # sac001.github.io
 
 Please note, this little website has a .well-known folder,
-containing an OpenPGP Web Key Directory (WKD) and a Braver
+containing an OpenPGP Web Key Directory (WKD) and a Brave
 Browser verification code. So, if you are a Brave user you
 know then that this site belongs to me.
 
