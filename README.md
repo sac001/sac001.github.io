@@ -8,8 +8,8 @@ know then that this site belongs to me.
 Regarding hosting WKD on GitHub I strongly suggest to read
 my thread 'WKD for GitHub pages', which I started a while
 ago on the GnuPG Mailing List, to see why WKD does not work
-with GnuPG, but with sequoia-pgp, Mailvelope, FlowCrypt and
-Thunderbird etc.
+with GnuPG and github.io pages, but with sequoia-pgp,
+Mailvelope, FlowCrypt and the latest Thunderbird etc.
 
 https://lists.gnupg.org/pipermail/gnupg-users/2021-January/thread.html
 
