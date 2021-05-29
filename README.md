@@ -5,7 +5,7 @@ containing an OpenPGP Web Key Directory (WKD) and a Braver
 Browser verification code. So, if you are a Brave user you
 know then that this site belongs to me.
 
-Regarding hosting WKD on GitHub I strongly suggest to read
+Regarding hosting WKD on GitHub, I strongly suggest to read
 my thread 'WKD for GitHub pages', which I started a while
 ago on the GnuPG Mailing List, to see why WKD does not work
 with GnuPG and github.io pages, but with sequoia-pgp,
